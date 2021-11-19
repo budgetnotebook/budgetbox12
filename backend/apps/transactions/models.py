@@ -1,6 +1,6 @@
-from users.models import User
+from apps.users.models import User
 from django.db import models
-from category.models import Category
+from apps.category.models import Category
 from config.constants import *
 from django.core.validators import MinValueValidator
 

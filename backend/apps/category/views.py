@@ -2,8 +2,8 @@ from apps.users.mixins import CustomLoginRequiredMixin
 from rest_framework import generics
 import random
 
-from apps.categories.models import Category
-from apps.categories.serializers import CategorySerializer
+from apps.category.models import Category
+from apps.category.serializers import CategorySerializer
 
 class CategoryAdd(CustomLoginRequiredMixin, generics.CreateAPIView):
     queryset = Category.objects.all()

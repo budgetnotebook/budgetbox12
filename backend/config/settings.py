@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.posts',
+    'apps.transactions',
+    'apps.category',
+    'apps.users',
     'cloudinary',
     'django_filters',
 ]
@@ -155,9 +158,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 cloudinary.config(
-    cloud_name="techis",
-    api_key="886187759951178",
-    api_secret="WGcWrWfkPlxdOCdlFaLTdjSNtfo",
+    cloud_name="dnevfkggs",
+    api_key="725332466165313",
+    api_secret="-8tpBlYhPfYMceidHzzeElkElCY",
     secure=True
 )
 
