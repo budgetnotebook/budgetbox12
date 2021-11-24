@@ -1,5 +1,5 @@
 import axios from 'axios';
-const LOGIN_USER_KEY = 'WD_FORUM_LOGIN_USER_KEY';
+const LOGIN_USER_KEY = 'BUDGET_BOX_LOGIN_USER_KEY';
 
 var baseURL;
 if (process.env.REACT_APP_ENVIRONMENT && process.env.REACT_APP_ENVIRONMENT === 'PRODUCTION') {
@@ -31,36 +31,40 @@ api.interceptors.request.use(
     }
 );
 
+api.interceptors.response.use(
+    response => {
+        return response.data;
+    },
+    error => {
+        if (error.response.status === 401) {
+            localStorage.removeItem(LOGIN_USER_KEY);
+        }
+        return Promise.reject(error);
+    }
+);
+
 export default class API {
-    getPosts = params => {
-        return api
-            .get('/posts/', { params })
-            .then(response => {
-                return response.data;
-            })
-            .catch(error => {
-                throw new Error(error);
-            });
-    };
-    addPost = postBody => {
+    signUp = async signUpBody => {
         const formData = new FormData();
 
-        for (const key in postBody) {
-            formData.append(key, postBody[key]);
+        for (const key in signUpBody) {
+            formData.append(key, signUpBody[key]);
         }
-
-        return api
-            .post('/posts/add/', formData)
-            .then(response => {
-                return response.data;
-            })
-            .catch(error => {
-                throw new Error(error);
-            });
+        return api.post('/users/signup/', formData);
     };
-    deletePost = id => {
-        return api.delete(`/posts/delete/${id}/`).catch(error => {
-            throw new Error(error);
-        });
+    signIn = async signInBody => {
+        const formData = new FormData();
+
+        for (const key in signInBody) {
+            formData.append(key, signInBody[key]);
+        }
+        return api.post('/users/signin/', formData);
+    };
+    updateProfile = async (updateProfileBody, id) => {
+        const formData = new FormData();
+        for (const key in updateProfileBody) {
+            formData.append(key, updateProfileBody[key]);
+        }
+        return api.put(`/users/update/${id}`, formData, { requireToken: true });
     };
 }
