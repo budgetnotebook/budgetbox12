@@ -9,7 +9,7 @@ import PublicDefaultLayout from './components/default/PublicDefaultLayout';
 const layouts = {
 	'public': PublicDefaultLayout,
 	'default': DefaultLayout
-};
+}; 
 
 function App() {
 	return (
