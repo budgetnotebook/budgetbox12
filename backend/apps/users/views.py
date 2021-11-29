@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 
-from  users.mixins import CustomLoginRequiredMixin
+from  apps.users.mixins import CustomLoginRequiredMixin
 from .models import User
 from .serializers import UserSerializer, UserSignInSerializer, UserSignUpSerializer, UserUpdateBudgetSerializer, UserUpdateSerializer
 
